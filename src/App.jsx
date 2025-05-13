@@ -1,10 +1,12 @@
 import {HomePage} from "./pages/HomePage/HomePage.jsx";
+import {LocationPage} from "./pages/LocationPage/LocationPage.jsx";
 
 
 function App() {
     return (
         <div>
-            <HomePage />
+            <HomePage/>
+            <LocationPage/>
         </div>
     )
 }
