@@ -8,10 +8,14 @@ export const Header = () => {
             <NavLink to="/">
                 <img className={s.logo} src={logo} alt="logotype"/>
             </NavLink>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/characters">Characters</NavLink>
-            <NavLink to="/locations">Locations</NavLink>
-            <NavLink to="/episodes">Episodes</NavLink>
+            <NavLink to="/"
+                     className={({isActive}) => isActive ? `${s.headerLink} ${s.active}` : s.headerLink}>Home</NavLink>
+            <NavLink to="/characters"
+                     className={({isActive}) => isActive ? `${s.headerLink} ${s.active}` : s.headerLink}>Characters</NavLink>
+            <NavLink to="/locations"
+                     className={({isActive}) => isActive ? `${s.headerLink} ${s.active}` : s.headerLink}>Locations</NavLink>
+            <NavLink to="/episodes"
+                     className={({isActive}) => isActive ? `${s.headerLink} ${s.active}` : s.headerLink}>Episodes</NavLink>
         </div>
     );
 };
