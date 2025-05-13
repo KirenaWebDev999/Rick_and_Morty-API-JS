@@ -1,15 +1,16 @@
-import {NavLink, Route} from "react-router";
-import {CharacterPage} from "../CharacterPage/CharacterPage.jsx";
-import {LocationPage} from "../LocationPage/LocationPage.jsx";
-import {EpisodePage} from "../EpisodePage/EpisodePage.jsx";
+import {NavLink} from "react-router";
+import s from './HomePage.module.css'
 
 
 export const HomePage = () => {
     return (
         <>
-            <NavLink to="/characters">Characters</NavLink>
-            <NavLink to="/locations">Locations</NavLink>
-            <NavLink to="/episodes">Episodes</NavLink>
+            <h1 className={s.title}>The Rick and Morty</h1>
+            <div>
+                <NavLink to="/characters">Characters</NavLink>
+                <NavLink to="/locations">Locations</NavLink>
+                <NavLink to="/episodes">Episodes</NavLink>
+            </div>
         </>
     );
 };
