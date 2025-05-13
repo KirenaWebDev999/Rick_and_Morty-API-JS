@@ -3,7 +3,7 @@
 export const EpisodePage = () => {
     return (
         <div>
-            <h1>The Rick and Morty</h1>
+            <h1 className={'pageTitle'}>EpisodePage</h1>
         </div>
     );
 };

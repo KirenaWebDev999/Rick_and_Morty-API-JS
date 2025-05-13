@@ -3,7 +3,7 @@
 export const LocationPage = () => {
     return (
         <div>
-            <h1>The Rick and Morty</h1>
+            <h1 className={'pageTitle'}>LocationPage</h1>
         </div>
     );
 };
