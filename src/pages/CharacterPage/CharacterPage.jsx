@@ -6,8 +6,12 @@ export const CharacterPage = () => {
 
     useEffect(() => {
         //  side effect
-        axios.get("https://rickandmortyapi.com/api/character")
-    }, [])
+        axios.get("https://rickandmortyapi.com/api/character").then((res) => {
+            console.log(res.data);
+        })
+
+
+    }, [])  // TODO пустой массив чтобы делать только 1 запрос на сервер
 
     return (
         <div>
