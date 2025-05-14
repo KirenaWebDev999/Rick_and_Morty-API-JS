@@ -14,9 +14,25 @@ export const LocationPage = () => {
     })
 
     return (
-        <div>
+        <div className={'pageContainer'}>
             <h1 className={'pageTitle'}>LocationPage</h1>
-            <div>{locations.length && locations[0].name}</div>
+            {locations.length && (
+                <div>
+                    {locations.map((location) => {
+                        return (
+                            <div key={location.id}>
+                                <ul>
+                                    <li>Location name: <b>{location.name}</b></li>
+                                    <li>Location type: <b>{location.type}</b></li>
+                                    <li>Measurement where the location is: <b>{location.dimension}</b></li>
+                                    <li>Number of characters seen in this location: <b>{location.residents.length}</b></li>
+                                </ul>
+                                <hr/>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
         </div>
     );
 };
