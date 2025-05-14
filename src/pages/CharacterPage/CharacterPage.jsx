@@ -1,13 +1,16 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 
 export const CharacterPage = () => {
 
+    const [characters, setCharacters] = useState([]);
+
     useEffect(() => {
         //  side effect
         axios.get("https://rickandmortyapi.com/api/character").then((res) => {
             console.log(res.data);
+            setCharacters(res.data.results);
         })
 
 
