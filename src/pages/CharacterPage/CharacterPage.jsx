@@ -52,10 +52,10 @@ export const CharacterPage = () => {
                         </div>
                     }
                     <div className={s.buttonContainer}>
-                        <button className="linkButton" onClick={previousPageHandler}>
+                        <button className="linkButton" disabled={info.prev === null} onClick={previousPageHandler}>
                             Previous
                         </button>
-                        <button className="linkButton" onClick={nextPageHandler}>
+                        <button className="linkButton" disabled={info.next === null} onClick={nextPageHandler}>
                             Next
                         </button>
                     </div>
