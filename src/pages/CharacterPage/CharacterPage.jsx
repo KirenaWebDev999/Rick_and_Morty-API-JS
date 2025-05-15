@@ -14,27 +14,23 @@ export const CharacterPage = () => {
         prev: null,
     })
 
-    useEffect(() => {
-        //  side effect
-        axios.get("https://rickandmortyapi.com/api/character").then((res) => {
-            console.log(res.data);
-            setCharacters(res.data.results);
-            setInfo(res.data.info);
-        })
-    }, [])  // TODO пустой массив чтобы делать только 1 запрос на сервер
-    
-    const previousPageHandler = () => {
-        axios.get(info.prev).then((res) => {
+    const fetchData = (url) => {
+        axios.get(url).then((res) => {
             setCharacters(res.data.results);
             setInfo(res.data.info);
         })
     }
 
+    useEffect(() => {
+        fetchData("https://rickandmortyapi.com/api/character");
+    }, [])  // TODO пустой массив чтобы делать только 1 запрос на сервер
+    
+    const previousPageHandler = () => {
+        fetchData(info.prev)
+    }
+
     const nextPageHandler = () => {
-        axios.get(info.next).then((res) => {
-            setCharacters(res.data.results);
-            setInfo(res.data.info);
-        })
+        fetchData(info.next)
     }
 
 
