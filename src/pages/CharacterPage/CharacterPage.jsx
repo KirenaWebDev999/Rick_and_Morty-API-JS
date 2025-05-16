@@ -37,6 +37,7 @@ export const CharacterPage = () => {
     return (
         <div className={"pageContainer"}>
             <h1 className={"pageTitle"}>CharacterPage</h1>
+            <input type="search" className={s.search} onChange={searchHandler} placeholder="Search..." />
             {characters.length && (
                 <>
                     {
