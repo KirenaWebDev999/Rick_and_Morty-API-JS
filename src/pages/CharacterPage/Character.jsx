@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { useParams } from "react-router"
-import s from "./Character.module.css"
+import {Link, useParams} from "react-router";
+import axios from "axios";
+import {useEffect, useState} from "react";
+import s from './Character.module.css'
 
 export const Character = () => {
-    const { id } = useParams()
+    const {id} = useParams();
 
     const [character, setCharacter] = useState(null)
 
@@ -13,6 +13,7 @@ export const Character = () => {
             setCharacter(res.data)
         })
     }, [])
+
 
     return (
         <div className="pageContainer">
@@ -37,6 +38,9 @@ export const Character = () => {
                             </div>
                         </div>
                     </div>
+                    <Link to={"/characters"} className={"linkButton"}>
+                        Go back
+                    </Link>
                 </div>
             )}
         </div>
