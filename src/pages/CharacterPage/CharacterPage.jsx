@@ -14,17 +14,24 @@ export const CharacterPage = () => {
         prev: null,
     })
 
+    const [error, setError] = useState(null);
+
     const fetchData = (url) => {
-        axios.get(url).then((res) => {
-            setCharacters(res.data.results);
-            setInfo(res.data.info);
-        })
+        axios.get(url)
+            .then((res) => {
+                setCharacters(res.data.results);
+                setInfo(res.data.info);
+                setError(null);  // TODO зануляем ошибку
+            })
+            .catch((err) => {
+                setError(err.response.data.error)
+            })
     }
 
     useEffect(() => {
         fetchData("https://rickandmortyapi.com/api/character");
     }, [])  // TODO пустой массив чтобы делать только 1 запрос на сервер
-    
+
     const previousPageHandler = () => {
         fetchData(info.prev)
     }
@@ -34,12 +41,12 @@ export const CharacterPage = () => {
     }
 
     const searchHandler = (event) => {
-        const value =  event.currentTarget.value
+        const value = event.currentTarget.value
         fetchData(`https://rickandmortyapi.com/api/character?name=${value}`)
-        fetchData(`https://rickandmortyapi.com/api/character?status=${value}`)
-        fetchData(`https://rickandmortyapi.com/api/character?species=${value}`)
-        fetchData(`https://rickandmortyapi.com/api/character?type=${value}`)
-        fetchData(`https://rickandmortyapi.com/api/character?gender=${value}`)
+        // fetchData(`https://rickandmortyapi.com/api/character?status=${value}`)
+        // fetchData(`https://rickandmortyapi.com/api/character?species=${value}`)
+        // fetchData(`https://rickandmortyapi.com/api/character?type=${value}`)
+        // fetchData(`https://rickandmortyapi.com/api/character?gender=${value}`)
 
         // const status = 'alive' | 'dead' | 'unknown'
         // const gender = 'female' | 'male' | 'genderless' | 'unknown'
@@ -49,8 +56,9 @@ export const CharacterPage = () => {
     return (
         <div className={"pageContainer"}>
             <h1 className={"pageTitle"}>CharacterPage</h1>
-            <input type="search" className={s.search} onChange={searchHandler} placeholder="Search..." />
-            {characters.length && (
+            <input type="search" className={s.search} onChange={searchHandler} placeholder="Search..."/>
+            {error && <div className="errorMessage">😒{error}😒</div>}
+            {!error && characters.length && ( // TODO скрываем данные если ничего не найдено
                 <>
                     {
                         <div className={s.characters}>
@@ -58,7 +66,7 @@ export const CharacterPage = () => {
                                 return (
                                     <div key={character.id} className={s.character}>
                                         <div className={s.characterLink}>{character.name}</div>
-                                        <img src={character.image} alt={`${character.name} avatar`} />
+                                        <img src={character.image} alt={`${character.name} avatar`}/>
                                     </div>
                                 )
                             })}
@@ -66,10 +74,10 @@ export const CharacterPage = () => {
                     }
                     <div className={s.buttonContainer}>
                         <button className="linkButton" disabled={info.prev === null} onClick={previousPageHandler}>
-                            Previous
+                            Назад
                         </button>
                         <button className="linkButton" disabled={info.next === null} onClick={nextPageHandler}>
-                            Next
+                            Вперед
                         </button>
                     </div>
                 </>
@@ -77,4 +85,3 @@ export const CharacterPage = () => {
         </div>
     )
 }
-
