@@ -33,6 +33,18 @@ export const CharacterPage = () => {
         fetchData(info.next)
     }
 
+    const searchHandler = (event) => {
+        const value =  event.currentTarget.value
+        fetchData(`https://rickandmortyapi.com/api/character?name=${value}`)
+        fetchData(`https://rickandmortyapi.com/api/character?status=${value}`)
+        fetchData(`https://rickandmortyapi.com/api/character?species=${value}`)
+        fetchData(`https://rickandmortyapi.com/api/character?type=${value}`)
+        fetchData(`https://rickandmortyapi.com/api/character?gender=${value}`)
+
+        // const status = 'alive' | 'dead' | 'unknown'
+        // const gender = 'female' | 'male' | 'genderless' | 'unknown'
+    }
+
 
     return (
         <div className={"pageContainer"}>
