@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import s from './CharacterPage.module.css'
+import {Link} from "react-router";
 
 
 export const CharacterPage = () => {
@@ -65,7 +66,9 @@ export const CharacterPage = () => {
                             {characters.map((character) => {
                                 return (
                                     <div key={character.id} className={s.character}>
-                                        <div className={s.characterLink}>{character.name}</div>
+                                        <Link to={`/characters/${character.id}`} className={s.characterLink}>
+                                            {character.name}
+                                        </Link>
                                         <img src={character.image} alt={`${character.name} avatar`}/>
                                     </div>
                                 )
@@ -74,10 +77,10 @@ export const CharacterPage = () => {
                     }
                     <div className={s.buttonContainer}>
                         <button className="linkButton" disabled={info.prev === null} onClick={previousPageHandler}>
-                            Назад
+                            Previous
                         </button>
                         <button className="linkButton" disabled={info.next === null} onClick={nextPageHandler}>
-                            Вперед
+                            Next
                         </button>
                     </div>
                 </>
