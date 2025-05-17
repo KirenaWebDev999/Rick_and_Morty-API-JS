@@ -14,6 +14,28 @@ export const Character = () => {
         })
     }, [])
 
+    const getStatusClassName = (status) => {
+        let characterStatus
+        switch (status) {
+            case "Alive":
+                characterStatus = s.aliveStatus
+                break
+
+            case "Dead":
+                characterStatus = s.deadStatus
+                break
+
+            case "unknown":
+                characterStatus = s.unknownStatus
+                break
+
+            default:
+                characterStatus = ""
+        }
+
+        return `${s.status} ${characterStatus}`
+    }
+
 
     return (
         <div className="pageContainer">
@@ -24,6 +46,7 @@ export const Character = () => {
                         <img className={s.img} src={character.image} alt="character" />
                         <div className={s.description}>
                             <div className={s.statusContainer}>
+                                <div className={getStatusClassName(character.status)}></div>
                                 <div>
                                     {character.status} - {character.species}
                                 </div>
